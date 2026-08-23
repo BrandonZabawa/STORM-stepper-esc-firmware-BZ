@@ -23,6 +23,7 @@
 #include "stdio.h"
 #include "stm32g4xx_hal_def.h"
 #include <stdint.h>
+#include <sys/_types.h>
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -105,6 +106,7 @@ void Trinamic_SPI_Task(void *pvParameters) {
 
     // Serialize the datagram packet from the trinamic driver.
     Trinamic_Datagram *datagram = (Trinamic_Datagram *)RX_Buffer;
+    spi_status *spi_data = (struct spi_status *)datagram->data;
 
     printf("Packet Register Address: %c", datagram->register_address);
   }

@@ -18,6 +18,8 @@ if(NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE "Debug")
 endif()
 
+enable_testing()
+
 # Set the project name
 set(CMAKE_PROJECT_NAME esc-firmware)
 

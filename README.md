@@ -55,7 +55,7 @@ This houses all the STM32 libraries that control chip functions on the MCU calle
 
 ## Architectural Overview
 
-The STM32 G474 will be connected to both the magnetic encoder and the motor drivers via two independent SPI busses. Will will have four of the TMC5160A motor drivers on SPI1 bus while the Magnetic encoder will be on SPI3.
+The STM32 G474 will be connected to both the magnetic encoder and the motor drivers via two independent SPI busses. Will have four of the TMC5160A motor drivers on SPI1 bus while the Magnetic encoder will be on SPI3.
 
 The magnetic encoder is highlighed in red while the motor drivers are highlighted in blue.
 

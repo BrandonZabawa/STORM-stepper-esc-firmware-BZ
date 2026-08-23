@@ -22,6 +22,7 @@
 #ifndef __MAIN_H
 #define __MAIN_H
 
+#include <stdint.h>
 #include <sys/_intsup.h>
 #include <sys/_types.h>
 #ifdef __cplusplus
@@ -124,7 +125,7 @@ typedef struct {
 typedef struct __attribute((packed)) {
   TRINAMIC_MODE mode: 1;
   unsigned char register_address: 7;
-  unsigned int data: 32;
+  uint32_t data: 32;
 } Trinamic_Datagram;
 
 /* USER CODE END EFP */

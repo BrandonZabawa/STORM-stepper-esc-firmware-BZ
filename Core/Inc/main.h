@@ -105,6 +105,20 @@ typedef enum {
   LOST_STEPS_R = 0x73, // n = 20
 } TRINAMIC_MOTOR_DRIVER_REGISTERS;
 
+typedef union {
+  uint32_t raw_bits;
+  struct {
+    char status_stop_r: 4;
+    char status_stop_i: 4;
+    char position_reached: 4;
+    char velocity_reached: 4;
+    char standstill: 4;
+    char sg2: 4;
+    char driver_error: 4;
+    char reset_flag: 4;
+  } spi_status;
+} spi_status_union;
+
 typedef struct {
   char status_stop_r;
   char status_stop_i;

@@ -106,7 +106,9 @@ void Trinamic_SPI_Task(void *pvParameters) {
 
     // Serialize the datagram packet from the trinamic driver.
     Trinamic_Datagram *datagram = (Trinamic_Datagram *)RX_Buffer;
-    spi_status *spi_data = (struct spi_status *)datagram->data;
+    spi_status_union spi_data_union;
+    
+    spi_data_union.raw_bits = (*datagram).data;
 
     printf("Packet Register Address: %c", datagram->register_address);
   }

@@ -17,7 +17,20 @@ Personal roadmap for contributing to the STORM stepper ESC firmware, from basic 
 ---
 
 ## Level 1: Setup and first PRs (Week 1: Sep 28 – Oct 4)
+### Src/main.c deliverables to do
+ - [ ] TODO: Implement inverse kinematics
+ - [ ] TODO: Implement mutexes
+ - [ ] TODO: add semaphores
+ - [ ] TODO: mess with timers (start & stop) for RTOS
+ - [ ] TODO: Add queues
+ - [ ] TODO: Explain what SPI1 & SPI3 are used for
+ - [ ] TODO: Explain what the PTD is used for
+ - [ ] TODO: Explain where is the FDCAN is used in the systme.
+ - [ ] TODO: Establish message-comms protocol between the microcontroller and the other motors, steppers, encoders, and acutuators.
+ - [ ] TODO: Draw a diagram of the main system architecture
+ - [ ] TODO: Explain how each component of this code correlates to the data-schematic
 
+### Other recommended todos to do in Src/main.c
 - [ ] Install CMake, ARM GNU toolchain and STM32CubeMX; firmware builds locally
 - [ ] Read `Core/Src/main.c` top to bottom; can explain the boot sequence from memory
 - [ ] Open `esc-firmware.ioc` in CubeMX, regenerate, and see what changes

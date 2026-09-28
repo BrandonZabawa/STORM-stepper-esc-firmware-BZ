@@ -16,7 +16,7 @@ Personal roadmap for contributing to the STORM stepper ESC firmware, from basic 
 
 ---
 
-## Level 1: Setup and first PRs (Week 1: Sep 28 – Oct 4)
+## Level 1: Setup and first PRs (Week 1 & 2: Sep 28 – Oct 1st & Oct 5th - Oct 9th)
 ### Src/main.c deliverables to do
  - [ ] TODO: Implement inverse kinematics
  - [ ] TODO: Implement mutexes

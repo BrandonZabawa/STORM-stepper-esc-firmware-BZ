@@ -8,7 +8,7 @@ Personal roadmap for contributing to the STORM stepper ESC firmware, from basic 
 ## Ground rules
 
 - [ ] Talk to the maintainer before week 2: share this plan, confirm priorities and PR size
-- [ ] Only edit generated files inside `/* USER CODE BEGIN */ ... END` blocks
+- [ ] Only edit generated files inside `/* USER CODE BEGIN */ ... END` blocks -> Optional
 - [ ] Small, focused PRs, each one tested and green in CI
 - [ ] Keep an engineering log (what broke, what I learned, numbers I measured)
 - [ ] One rest day per week; lighter weeks around exams

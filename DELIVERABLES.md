@@ -71,7 +71,17 @@ Personal roadmap for contributing to the STORM stepper ESC firmware, from basic 
 - [ ] **Doc:** CAN protocol spec v0.1 (IDs, command/telemetry frames, units, fault behavior), reviewed by firmware + ROS2 teams
 - [ ] **PR:** DBC file for the protocol; generated C packing plus Python decoding (cantools)
 - [ ] **PR:** FDCAN real bit timing, filters, and send/receive tasks
-- [ ] **Experiment:** compare classic CAN vs. CAN FD on two branches (`can-classic`: `FDCAN_FRAME_CLASSIC`; `can-fd`: `FDCAN_FRAME_FD_BRS` with data-phase bit timing), both in `FDCAN_MODE_NORMAL`. Measure bus load, command-to-SPI latency, max telemetry rate, and dropped frames; check that the USB-CAN adapter and every node support FD. Judge whether the 8-byte classic payload is enough for future inverse-kinematics commands (e.g. multi-joint targets in one frame) or whether 64-byte FD frames are worth it. Write up the result in the CAN protocol spec.
+- [ ] **Decision + experiment:** classic CAN vs. CAN FD, driven by message size
+  - [ ] Count the bytes of every command/telemetry message in the CAN protocol spec (including inverse-kinematics commands, timestamps, flags) and record whether each fits in 8 bytes
+  - [ ] If everything fits in 8 bytes: stay on classic (`FDCAN_FRAME_CLASSIC`) and document why
+  - [ ] If anything doesn't fit: build a `can-fd` branch (`FDCAN_FRAME_FD_BRS` + data-phase bit timing, still `FDCAN_MODE_NORMAL`) next to a `can-classic` branch and compare bus load, command-to-SPI latency, max telemetry rate, and dropped frames
+  - [ ] Check the design impact of switching: protocol/DBC packing, queue item sizes, FDCAN message RAM config, python-can/ROS2 tooling, USB-CAN adapter and node FD support, parser/fuzz tests with variable frame lengths
+  - [ ] Write the decision and numbers into the CAN protocol spec
+- [ ] **Design rule (modularity):** keep the CAN layer modular so pieces can be swapped without touching the rest of the firmware
+  - [ ] One `can_if` module owns all FDCAN HAL calls; the rest of the code only sees `can_send(frame)` / `can_receive(frame)`
+  - [ ] Frame format (classic vs. FD), bit timing and filters live in a single config struct/header, so switching is a config change, not a rewrite
+  - [ ] Protocol packing/unpacking (DBC-generated) kept separate from the transport, and motor/SPI code only consumes decoded commands from queues
+  - [ ] Use function-pointer interfaces (like the planned `tmc5160` `xfer` interface) so transports and drivers can be faked in tests
 - [ ] Python tool (python-can) that controls the motor from my laptop
 - [ ] **PR:** board state machine: INIT / IDLE / ENABLED / FAULT / ESTOP
 - [ ] **PR:** safety: CAN command timeout triggers safe stop; speed, acceleration and position limits; driver fault handling

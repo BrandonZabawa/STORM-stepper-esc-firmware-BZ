@@ -71,6 +71,7 @@ Personal roadmap for contributing to the STORM stepper ESC firmware, from basic 
 - [ ] **Doc:** CAN protocol spec v0.1 (IDs, command/telemetry frames, units, fault behavior), reviewed by firmware + ROS2 teams
 - [ ] **PR:** DBC file for the protocol; generated C packing plus Python decoding (cantools)
 - [ ] **PR:** FDCAN real bit timing, filters, and send/receive tasks
+- [ ] **Experiment:** compare classic CAN vs. CAN FD on two branches (`can-classic`: `FDCAN_FRAME_CLASSIC`; `can-fd`: `FDCAN_FRAME_FD_BRS` with data-phase bit timing), both in `FDCAN_MODE_NORMAL`. Measure bus load, command-to-SPI latency, max telemetry rate, and dropped frames; check that the USB-CAN adapter and every node support FD. Judge whether the 8-byte classic payload is enough for future inverse-kinematics commands (e.g. multi-joint targets in one frame) or whether 64-byte FD frames are worth it. Write up the result in the CAN protocol spec.
 - [ ] Python tool (python-can) that controls the motor from my laptop
 - [ ] **PR:** board state machine: INIT / IDLE / ENABLED / FAULT / ESTOP
 - [ ] **PR:** safety: CAN command timeout triggers safe stop; speed, acceleration and position limits; driver fault handling
